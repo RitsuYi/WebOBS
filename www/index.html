@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#020611">
+  <title>WebOBS · LAN Monitor</title>
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="preload" href="/fonts/Exo2-Italic.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="/dashboard.css">
+  <script src="/dashboard.js" defer></script>
+</head>
+<body>
+  <main class="screen" aria-label="电脑状态仪表盘">
+    <div class="cluster-shell">
+      <svg id="cluster" class="cluster-svg" viewBox="0 0 2048 768" role="img" aria-labelledby="cluster-title cluster-description">
+        <title id="cluster-title">WebOBS 电脑状态仪表盘</title>
+        <desc id="cluster-description">左侧 CPU 使用率及 CPU 电压，右侧内存使用率及 GPU 电压，小仪表电压量程为 0–2 V，中央整机功率，底部 CPU 与 GPU 频率、电压、功耗。</desc>
+      </svg>
+      <nav class="utility" aria-label="仪表操作">
+        <a href="/settings" title="参数配置" aria-label="打开参数配置">⚙</a>
+        <button id="fullscreen" title="全屏（F）" aria-label="切换全屏">⛶</button>
+      </nav>
+      <button class="hit previous" id="previous" aria-label="上一个仪表视图" title="上一个视图（←）"></button>
+      <button class="hit next" id="next" aria-label="下一个仪表视图" title="下一个视图（→）"></button>
+      <a class="hit settings" href="/settings" aria-label="打开参数配置" title="参数配置"></a>
+      <button class="hit diagnostics" id="diagnostics" aria-label="查看传感器状态" title="查看采集状态"></button>
+    </div>
+    <p class="sr-only" id="accessible-reading" aria-live="off">正在连接本地硬件采集服务。</p>
+  </main>
+  <dialog id="status-dialog">
+    <div class="dialog-heading"><span>采集状态</span><button id="close-status" aria-label="关闭">×</button></div>
+    <div id="status-details"></div>
+    <a href="/settings">打开参数配置 →</a>
+  </dialog>
+</body>
+</html>

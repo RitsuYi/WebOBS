@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+ <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="theme-color" content="#050b15"><title>参数配置 · WebOBS</title>
+ <link rel="icon" href="/icon.svg" type="image/svg+xml"><link rel="stylesheet" href="/settings.css">
+ <script src="/settings.js" defer></script>
+</head>
+<body>
+ <header><a class="brand" href="/">◉ <span>WEB<span class="accent">OBS</span></span><small>LAN MONITOR</small></a><a class="back" href="/">← 返回仪表盘</a></header>
+ <main>
+  <div class="intro"><div><span class="eyebrow">CONTROL PANEL</span><h1>让仪表，适合你的电脑。</h1><p>调整采集频率、功率模型与显示效果。参数保存在本机，所有仪表同步更新。</p></div><div id="service-state" class="service-state">● 连接中</div></div>
+  <p id="read-only" class="notice" hidden>当前通过局域网访问，配置为只读。请在运行程序的电脑上打开 localhost:8080/settings 修改参数。</p>
+  <form id="configuration">
+   <div class="layout">
+    <div class="column">
+     <section class="card"><div class="card-title"><span class="card-icon">01</span><div><h2>采集与性能</h2><p>所有设备共享一次采集，访问页面不会重复读取硬件。</p></div><span class="chip">轻量模式</span></div>
+      <div class="field"><label for="sampleIntervalMs">系统采集间隔 <span>CPU / 内存 / NVML</span></label><div class="input-unit"><input id="sampleIntervalMs" name="sampleIntervalMs" type="number" min="250" max="10000" step="50" required><span>ms</span></div></div>
+      <div class="field"><label for="sensorIntervalMs">传感器采集间隔 <span>功耗 / 电压</span></label><div class="input-unit"><input id="sensorIntervalMs" name="sensorIntervalMs" type="number" min="1000" max="10000" step="100" required><span>ms</span></div></div>
+      <div class="field"><label for="motherboardSensors">主板传感器 <span>需要主板 Vcore 时启用</span></label><label class="switch"><input type="checkbox" name="motherboardSensors" id="motherboardSensors"><span></span></label></div>
+      <div class="field"><label for="elevatedSensors">完整硬件读取 <span>启动时按需申请 UAC；关闭后退出</span></label><label class="switch"><input type="checkbox" name="elevatedSensors" id="elevatedSensors"><span></span></label></div>
+      <div class="presets"><button type="button" data-preset="eco">省资源采集</button><button type="button" data-preset="balanced" class="selected">平衡采集</button><button type="button" data-preset="smooth">快速采集</button></div>
+      <p class="hint">默认系统数据 1 秒更新、传感器 1.5 秒更新。前端动画跟随屏幕刷新率，不设帧率上限。完整硬件读取不设置常驻服务或开机启动；授权开关重启程序后生效。取消授权仍可读取可用指标。</p>
+     </section>
+     <section class="card"><div class="card-title"><span class="card-icon">02</span><div><h2>整机功率</h2><p>中央瞬时功率表的计算方式。</p></div></div>
+      <div class="field"><label for="powerMode">功率来源</label><select name="powerMode" id="powerMode"><option value="estimate">CPU + GPU + 基础功耗</option><option value="wall">考虑电源效率的插座功率估算</option><option value="measured">整机功率传感器实测</option></select></div>
+      <div class="field"><label for="basePowerW">基础功耗 <span>主板 / 内存 / 风扇 / 存储</span></label><div class="input-unit"><input id="basePowerW" name="basePowerW" type="number" min="0" max="1000" step="1" required><span>W</span></div></div>
+      <div class="field" id="efficiency-field"><label for="psuEfficiency">电源效率</label><div class="input-unit"><input id="psuEfficiency" name="psuEfficiency" type="number" min="50" max="100" step="1" required><span>%</span></div></div>
+      <div class="field"><label for="maxPowerW">功率表满量程</label><div class="input-unit"><input id="maxPowerW" name="maxPowerW" type="number" min="50" max="3000" step="10" required><span>W</span></div></div>
+      <div class="formula" id="formula">CPU + GPU + 100 W</div>
+      <p class="hint">基础功耗是估算值。插座功率 =（CPU + GPU + 基础功耗）÷ 电源效率。更准确的整机功率需支持的功率计或电源传感器；CPU / GPU 任一功耗缺失时显示“—”。核显的功耗可能已包含在 CPU Package 中，避免重复计入。</p>
+     </section>
+     <section class="card"><div class="card-title"><span class="card-icon">03</span><div><h2>仪表显示</h2><p>保留参考图的布局，调整动画与警戒区。</p></div></div>
+      <div class="field"><label for="animationMs">指针过渡时长</label><div class="input-unit"><input id="animationMs" name="animationMs" type="number" min="0" max="3000" step="50" required><span>ms</span></div></div>
+      <div class="field"><label for="cpuWarningPercent">CPU 红区起点</label><div class="input-unit"><input id="cpuWarningPercent" name="cpuWarningPercent" type="number" min="10" max="100" step="1" required><span>%</span></div></div>
+      <div class="field"><label for="memoryWarningPercent">内存红区起点</label><div class="input-unit"><input id="memoryWarningPercent" name="memoryWarningPercent" type="number" min="10" max="100" step="0.5" required><span>%</span></div></div>
+      <div class="field"><label for="cpuPowerMaxW">CPU 功耗满量程</label><div class="input-unit"><input id="cpuPowerMaxW" name="cpuPowerMaxW" type="number" min="10" max="1000" step="10" required><span>W</span></div></div>
+      <div class="field range-field"><label for="brightness">仪表亮度</label><input id="brightness" name="brightness" type="range" min="20" max="140" step="1"><output for="brightness" id="brightness-value">100%</output></div>
+      <p class="hint">内存刻度沿用参考图的 0–8，8 对应 100% 使用率。F 切换全屏，← / → 切换中央视图，点击 READY / CHECK 查看传感器状态。</p>
+     </section>
+    </div>
+    <div class="column">
+     <section class="card preview-card"><div class="card-title"><div><h2>实时读数</h2><p>采集服务的原始数据与可用状态。</p></div><a href="/?demo=1" target="_blank" class="preview-link">查看演示 ↗</a></div><div class="readings" id="readings"><div>正在读取…</div></div><div class="issues" id="issues"></div></section>
+     <section class="card"><div class="card-title"><span class="card-icon">04</span><div><h2>硬件与传感器</h2><p>自动选择，或绑定具体的硬件读数。</p></div><button id="refresh-sensors" type="button" class="text-button">刷新</button></div>
+      <div class="field"><label for="cpuDevice">CPU 设备</label><select name="cpuDevice" id="cpuDevice"><option value="">自动选择</option></select></div>
+      <div class="field"><label for="gpuDevice">GPU 设备</label><select name="gpuDevice" id="gpuDevice"><option value="">自动选择独立显卡</option></select></div>
+      <div id="sensor-mappings"></div>
+      <details><summary>查看所有发现的传感器</summary><div id="sensor-catalog"></div></details>
+      <p class="hint">CPU 电压默认取主板 Vcore；CPU 占用率默认取 Windows Total CPU Usage 整体使用率；CPU 功耗取 CPU Package Power / CPU Package 封装功耗。GPU 功耗选择 Package / Board。标有“不可用”的传感器不会生成模拟数值。</p>
+     </section>
+     <section class="card"><div class="card-title"><span class="card-icon">05</span><div><h2>网络与数据</h2><p>本地运行，局域网设备通过浏览器访问。</p></div></div>
+      <div class="field"><label for="host">监听地址</label><input id="host" name="host" type="text" required pattern="[0-9.]+" placeholder="0.0.0.0"></div>
+      <div class="field"><label for="port">监听端口</label><input id="port" name="port" type="number" min="1024" max="65535" step="1" required></div>
+      <div id="lan-links" class="lan-links"></div>
+      <p class="hint">0.0.0.0 允许局域网访问，127.0.0.1 仅允许本机访问。修改监听地址或端口后需要重启程序。配置写入仅限运行程序的电脑。</p>
+      <div class="field"><label for="demo">演示数据 <span>启用后所有页面显示 DEMO</span></label><label class="switch"><input id="demo" name="demo" type="checkbox"><span></span></label></div>
+     </section>
+    </div>
+   </div>
+   <div class="savebar"><div><span id="save-state" aria-live="polite">正在加载配置…</span><small id="save-detail">保存在本机 config.json</small></div><div class="save-actions"><button type="button" id="reset" class="secondary">恢复默认</button><button type="submit" id="save" class="primary">保存配置 <span>→</span></button></div></div>
+  </form>
+ </main>
+ <footer>WEBOBS <span>LOCAL HARDWARE. LIVE INSTRUMENTS.</span><span>Python + Windows API + LibreHardwareMonitor</span></footer>
+</body>
+</html>

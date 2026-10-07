@@ -1,0 +1,21 @@
+# Normalize text in the repository; preserve Windows launcher line endings.
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Keep binary assets byte-for-byte, including the signed driver and fonts.
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.webp binary
+*.ico binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.sys binary
+*.exe binary
+*.dll binary
+*.zip binary
+
+# Preserve the upstream font license exactly, including its whitespace.
+www/fonts/OFL-Exo2.txt -whitespace

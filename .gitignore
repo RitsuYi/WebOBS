@@ -1,0 +1,48 @@
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Build tools and generated portable packages
+/.build-tools/
+/.build/
+/dist*/
+/WebOBS-Windows*.zip
+*.spec
+
+# Machine-specific runtime configuration and logs
+/config.json
+/config.json.tmp
+*.log
+.env
+.env.*
+!.env.example
+
+# Local verification artifacts; maintained documentation lives in docs/
+/verification/
+
+# Downloaded libraries, compiled bridge and driver extraction intermediates
+# Keep the exact PawnIO runtime files and corresponding license/source bundle
+# required by build.py, so a fresh checkout can build the portable application.
+/vendor/*
+!/vendor/PawnIO/
+/vendor/PawnIO/*
+!/vendor/PawnIO/PawnIO.sys
+!/vendor/PawnIO/manifest.json
+!/vendor/PawnIO/LICENSE-and-source.md
+!/vendor/PawnIO/COPYING
+!/vendor/PawnIO/PawnIO-2.1.0-source.zip
+!/vendor/PawnIO/PawnPP-source.zip
+
+# Local editor and agent state
+.idea/
+.vscode/
+.codex/
+.agents/
+.aws/
+*.swp
+*.swo
+Thumbs.db
+.DS_Store

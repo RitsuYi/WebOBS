@@ -1,0 +1,10 @@
+{
+  "version": "2.1.0",
+  "sourceCommit": "e1043d7750f501b6b0d3ac0a71bd5b9406cd17b6",
+  "release": "https://github.com/namazso/PawnIO.Setup/releases/tag/2.1.0",
+  "installerSha256": "a3a46226c5e2824f4cdd42be0eecbabfc672c86f7889710f5ab1e6ad385b47a0",
+  "driverSha256": "f92de04e5a02256e86ffa1b4252fe669282198b7329227f40e51bca9267d133d",
+  "sourceSha256": "b75f0fdfa238b8666b78163419ca4a41c5c2ceca692862c03854809f8c8082d8",
+  "pawnppCommit": "e64e4c37b2d8ba0d8ee57205faf8183aee12c438",
+  "pawnppSourceSha256": "8a97a62db80459618bf3eac2c1c8cf65b91fb3bc17e2a226e4b3b1a1e4d3bf6c"
+}

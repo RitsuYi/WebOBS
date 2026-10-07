@@ -1,0 +1,21 @@
+{
+  "host": "0.0.0.0",
+  "port": 8080,
+  "sampleIntervalMs": 1000,
+  "animationMs": 850,
+  "sensorIntervalMs": 1000,
+  "motherboardSensors": true,
+  "elevatedSensors": true,
+  "basePowerW": 100,
+  "powerMode": "estimate",
+  "psuEfficiency": 90,
+  "maxPowerW": 650,
+  "cpuWarningPercent": 85,
+  "memoryWarningPercent": 87.5,
+  "cpuPowerMaxW": 200,
+  "brightness": 100,
+  "cpuDevice": "",
+  "gpuDevice": "",
+  "demo": false,
+  "sensors": {}
+}

@@ -1,0 +1,38 @@
+@font-face{font-family:"Cluster Exo";src:url("/fonts/Exo2-Regular.ttf") format("truetype");font-style:normal;font-weight:100 900;font-display:swap}
+@font-face{font-family:"Cluster Exo";src:url("/fonts/Exo2-Italic.ttf") format("truetype");font-style:italic;font-weight:100 900;font-display:swap}
+:root{color-scheme:dark;font-family:"Cluster Exo",Bahnschrift,"Segoe UI",sans-serif;background:#000;color:#eef7ff}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{background:#000}
+.screen{height:100dvh;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 50%,#030919 0%,#000 72%)}
+.cluster-shell{width:min(100vw,calc(100dvh * 8 / 3));aspect-ratio:8/3;position:relative;isolation:isolate}
+#cluster{display:block;width:100%;height:100%;overflow:hidden;user-select:none;transform:translateZ(0)}
+.cluster-face{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none;transform:translateZ(0)}
+.cluster-face[hidden]{display:none}
+.cluster-svg{filter:var(--cluster-filter,none)}
+.cluster-svg text{font-family:"Cluster Exo",Bahnschrift,"Segoe UI",sans-serif;font-weight:400}
+.cluster-svg .number{font-style:italic;font-weight:350;fill:#fcfaff;filter:var(--text-glow,url(#text-glow));letter-spacing:-1.5px}
+.cluster-svg .readout{font-style:italic;font-weight:350;fill:#fcfaff;filter:var(--readout-glow,url(#readout-glow));font-variant-numeric:tabular-nums;letter-spacing:-2px}
+.cluster-svg .label{fill:#ecf2ff;filter:var(--text-glow,url(#text-glow))}
+.cluster-svg .blue-label{font-family:Bahnschrift,"Arial Narrow",sans-serif;fill:#73caff;font-stretch:condensed;letter-spacing:.5px}
+.cluster-svg .value{fill:#f4f1ff;font-style:italic;font-weight:400;filter:var(--text-glow,url(#text-glow));font-variant-numeric:tabular-nums}
+.cluster-svg .dial-label{font-family:Bahnschrift,"Arial Narrow",sans-serif;fill:#f0ebff;filter:var(--text-glow,url(#text-glow))}
+.cluster-svg .needle{filter:var(--needle-glow,url(#needle-glow))}
+.instrument-layer{position:absolute;pointer-events:none;contain:layout paint;transform:translateZ(0);overflow:hidden}
+.instrument-surface{z-index:2}
+.dial-motion{z-index:1;clip-path:circle(48.777% at 50% 50%)}
+.needle-rotor,.flare-orbit{position:absolute;inset:0;transform-origin:50% 50%;will-change:transform}
+.needle-art{display:block;width:100%;height:100%;overflow:visible}
+.flare-upright{position:absolute;left:40.5198777%;top:-3.6697248%;width:18.9602446%;height:11.0091743%;transform-origin:50% 50%;will-change:transform}
+.flare-art{display:block;width:100%;height:100%;overflow:visible}
+.hit{position:absolute;background:transparent;border:0;cursor:pointer;color:transparent;border-radius:24px}
+.hit:hover,.hit:focus-visible{outline:1px solid #5bc9ff;background:#46aaff0b}
+.previous{left:41.5%;top:79%;width:2.5%;height:8%}.next{left:56.3%;top:79%;width:2.5%;height:8%}
+.settings{left:44.3%;top:78%;width:11.4%;height:6.5%}.diagnostics{left:47%;top:90%;width:6%;height:6.5%}
+.hit{z-index:3}
+.utility{position:absolute;z-index:3;top:2.5%;left:46.5%;display:flex;gap:8px;opacity:0;transition:opacity .2s}
+.cluster-shell:hover .utility,.utility:focus-within{opacity:1}.utility a,.utility button{font:24px/1 Bahnschrift,sans-serif;text-decoration:none;color:#83cfff;border:1px solid #1f5379;background:#04122cc9;border-radius:7px;padding:6px 10px;cursor:pointer}
+.utility a:hover,.utility button:hover{color:#fff;border-color:#8cdbff}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+dialog{max-width:620px;width:calc(100% - 40px);padding:26px;background:linear-gradient(145deg,#0a1b34,#030913);border:1px solid #25608d;border-radius:16px;color:#dceeff;box-shadow:0 0 80px #0175da30;font-family:"Segoe UI","Microsoft YaHei",sans-serif}
+dialog::backdrop{background:#000a;backdrop-filter:blur(5px)}.dialog-heading{display:flex;align-items:center;justify-content:space-between;font-size:22px;margin-bottom:20px}.dialog-heading button{color:#b5dfff;background:none;border:0;font-size:28px;cursor:pointer}
+dialog p,dialog li{font-size:14px;line-height:1.8;color:#aac2d9}dialog a{color:#75cfff;text-decoration:none;display:inline-block;margin-top:12px}dialog strong{color:#e6f5ff}
+@media(max-width:700px){.utility{opacity:1;top:auto;bottom:-48px;left:calc(50% - 50px)}.utility a,.utility button{font-size:20px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
