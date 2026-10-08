@@ -40,13 +40,15 @@ Python 标准库提供 HTTP / SSE 服务，前端使用原生 HTML、CSS、JavaS
 
 需要 **Windows 10 / 11 和 Python 3.10+**。基础运行只使用 Python 标准库，无需 `pip install`。
 
-在项目目录打开 PowerShell：
+首次使用时，在准备保存项目的目录打开 PowerShell：
 
 ```powershell
 git clone https://github.com/RitsuYi/WebOBS.git
 cd WebOBS
 python monitor.py
 ```
+
+已有源码时，直接在项目目录运行 `python monitor.py` 即可。
 
 也可以双击 `Start-WebOBS.cmd`，它会优先使用 Windows Python Launcher `py`，否则使用 `python`。
 
