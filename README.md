@@ -2,6 +2,8 @@
 
 把电脑的实时硬件状态变成一块汽车风格的仪表盘。在 Windows 电脑上运行采集服务，用同一局域网内的电脑、平板或手机浏览器查看 CPU、内存、GPU 和功耗。
 
+源码仓库：[RitsuYi/WebOBS](https://github.com/RitsuYi/WebOBS)。
+
 Python 标准库提供 HTTP / SSE 服务，前端使用原生 HTML、CSS、JavaScript、SVG 与 Canvas；运行无需 Node.js、数据库或前端构建工具。
 
 ![WebOBS 仪表盘，演示数据](docs/screenshots/dashboard-demo.jpg)
@@ -41,6 +43,8 @@ Python 标准库提供 HTTP / SSE 服务，前端使用原生 HTML、CSS、JavaS
 在项目目录打开 PowerShell：
 
 ```powershell
+git clone https://github.com/RitsuYi/WebOBS.git
+cd WebOBS
 python monitor.py
 ```
 
@@ -261,10 +265,9 @@ git add README.md docs
 git commit -m "docs: update project documentation"
 ```
 
-当前只配置本地仓库。之后有远程仓库地址时，可以执行：
+远程仓库为 [RitsuYi/WebOBS](https://github.com/RitsuYi/WebOBS)，远程名称为 `origin`。使用上文的 `git clone` 会自动配置远程；提交修改后可同步主分支：
 
 ```powershell
-git remote add origin <你的远程仓库地址>
 git push -u origin main
 ```
 
